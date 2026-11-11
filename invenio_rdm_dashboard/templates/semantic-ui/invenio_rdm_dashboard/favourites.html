@@ -10,6 +10,7 @@
 {%- block javascript %}
 {{ super() }}
 {{ webpack['invenio-rdm-dashboard-favourites.js'] }}
+{{ optional_webpack_tag('invenio-rdm-dashboard-favourites.css') }}
 {%- endblock javascript %}
 
 {%- block user_dashboard_body %}

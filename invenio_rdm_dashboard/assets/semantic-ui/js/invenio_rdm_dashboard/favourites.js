@@ -6,13 +6,14 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import {
+  Card,
   Checkbox,
   Container,
   Dropdown,
   Grid,
   Item,
+  List,
   Loader,
-  Menu,
   Message,
 } from "semantic-ui-react";
 import RecordsResultsListItem from "@js/invenio_app_rdm/components/RecordsResultsListItem";
@@ -107,19 +108,23 @@ const FavouritesPage = () => {
       <Grid>
         <Grid.Row>
           <Grid.Column mobile={16} tablet={16} computer={4}>
-            <Menu vertical fluid>
-              <Menu.Item header>Resource type</Menu.Item>
-              {RESOURCE_TYPE_OPTIONS.map((option) => (
-                <Menu.Item key={option.value}>
-                  <Checkbox
-                    radio
-                    label={option.label}
-                    checked={resourceType === option.value}
-                    onChange={() => setResourceType(option.value)}
-                  />
-                </Menu.Item>
-              ))}
-            </Menu>
+            <Card className="borderless facet">
+              <Card.Content>
+                <Card.Header as="h2">Resource type</Card.Header>
+                <List link>
+                  {RESOURCE_TYPE_OPTIONS.map((option) => (
+                    <List.Item key={option.value} className="facet-wrapper">
+                      <Checkbox
+                        radio
+                        label={option.label}
+                        checked={resourceType === option.value}
+                        onChange={() => setResourceType(option.value)}
+                      />
+                    </List.Item>
+                  ))}
+                </List>
+              </Card.Content>
+            </Card>
           </Grid.Column>
 
           <Grid.Column mobile={16} tablet={16} computer={12}>

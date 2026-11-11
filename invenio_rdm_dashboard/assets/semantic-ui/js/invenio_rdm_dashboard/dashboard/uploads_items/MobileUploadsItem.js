@@ -65,15 +65,16 @@ export const MobileUploadsItem = ({
             {accessStatus}
           </Label>
         </Item.Extra>
-        <Item.Header
-          as="h2"
-          className="flex justify-space-between align-items-center"
-        >
+        <Item.Header as="h2" className="flex justify-space-between align-items-center">
           <a href={viewLink} className="truncate-lines-2">
             {icon}
             {title}
           </a>
-          {TitleActions && isPublished && <TitleActions result={result} />}
+          {TitleActions && isPublished && (
+            <span className="ml-5">
+              <TitleActions result={result} />
+            </span>
+          )}
         </Item.Header>
         <Item.Meta>
           <div className="creatibutors">

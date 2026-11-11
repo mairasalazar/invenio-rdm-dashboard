@@ -21,8 +21,7 @@ import {
 } from "@js/invenio_app_rdm/search/components";
 import { DashboardResultView, DashboardSearchLayoutHOC } from "./base";
 import { createSearchAppInit } from "@js/invenio_search_ui";
-import { ComputerTabletUploadsItem } from "./uploads_items/ComputerTabletUploadsItem";
-import { MobileUploadsItem } from "./uploads_items/MobileUploadsItem";
+import { RDMRecordResultsListItem } from "./uploads_items/RDMRecordResultsListItem";
 import PropTypes from "prop-types";
 import {
   ContribSearchAppFacets,
@@ -31,84 +30,7 @@ import {
   ContribRangeFacetElement,
 } from "@js/invenio_search_ui/components";
 
-const statuses = {
-  in_review: { color: "warning", title: i18next.t("In review") },
-  declined: { color: "negative", title: i18next.t("Declined") },
-  expired: { color: "expired", title: i18next.t("Expired") },
-  draft_with_review: { color: "neutral", title: i18next.t("Draft") },
-  draft: { color: "neutral", title: i18next.t("Draft") },
-  new_version_draft: { color: "neutral", title: i18next.t("New version draft") },
-};
-
-export const RDMRecordResultsListItem = ({ result, titleActions }) => {
-  const viewDraft = () => {
-    // The upload view is responsible to redirect the user to the upload form or
-    // the preview page depending on the permissions they have.
-    window.location = `/uploads/${result.id}`;
-  };
-
-  const isPublished = result.is_published;
-  const access = {
-    accessStatusId: _get(result, "ui.access_status.id", i18next.t("open")),
-    accessStatus: _get(result, "ui.access_status.title_l10n", i18next.t("Open")),
-    accessStatusIcon: _get(result, "ui.access_status.icon", i18next.t("unlock")),
-  };
-  const uiMetadata = {
-    descriptionStripped: _get(
-      result,
-      "ui.description_stripped",
-      i18next.t("No description")
-    ),
-    title: _get(result, "metadata.title", i18next.t("No title")),
-    creators: _get(result, "ui.creators.creators", []),
-    subjects: _get(result, "ui.subjects", []),
-    publicationDate: _get(
-      result,
-      "ui.publication_date_l10n_long",
-      i18next.t("No publication date found.")
-    ),
-    resourceType: _get(
-      result,
-      "ui.resource_type.title_l10n",
-      i18next.t("No resource type")
-    ),
-    createdDate: result.ui?.created_date_l10n_long,
-    version: result.ui?.version ?? "",
-    isPublished: isPublished,
-    viewLink: isPublished ? `/records/${result.id}` : `/uploads/${result.id}`,
-    publishingInformation: _get(result, "ui.publishing_information.journal", ""),
-  };
-
-  return (
-    <>
-      <ComputerTabletUploadsItem
-        result={result}
-        viewDraft={viewDraft}
-        statuses={statuses}
-        access={access}
-        uiMetadata={uiMetadata}
-        titleActions={titleActions}
-      />
-      <MobileUploadsItem
-        result={result}
-        viewDraft={viewDraft}
-        statuses={statuses}
-        access={access}
-        uiMetadata={uiMetadata}
-        titleActions={titleActions}
-      />
-    </>
-  );
-};
-
-RDMRecordResultsListItem.propTypes = {
-  result: PropTypes.object.isRequired,
-  titleActions: PropTypes.elementType,
-};
-
-RDMRecordResultsListItem.defaultProps = {
-  titleActions: null,
-};
+export { RDMRecordResultsListItem };
 
 // FIXME: Keeping ResultsGrid.item and SearchBar.element because otherwise
 // these components in RDM result broken.

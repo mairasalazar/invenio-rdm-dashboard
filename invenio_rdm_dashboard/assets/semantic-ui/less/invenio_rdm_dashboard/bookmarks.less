@@ -1,0 +1,30 @@
+/*
+ * SPDX-FileCopyrightText: 2026
+ * SPDX-License-Identifier: MIT
+ *
+ * Positions the bookmark star at the end of the title row, and corrects
+ * community rows' content width to match records' so the star lands at
+ * the same horizontal position in both.
+ *
+ * This targets markup owned by invenio-app-rdm's RecordsResultsListItem
+ * and invenio-communities' CommunityItemComputer/CommunityItemMobile -
+ * their class names (not custom hooks) are the only thing to select on
+ * without forking those components, so this depends on those class names
+ * staying put upstream.
+ */
+
+// RecordsResultsListItem.js's Item.Header, and CommunityItemComputer.js /
+// CommunityItemMobile.js's Header, share this class combination - but
+// Item.Header renders without the "ui" class Semantic adds to a
+// standalone Header, so this can't require it.
+.header.flex.align-items-center {
+  justify-content: space-between;
+}
+
+// CommunityItemComputer.js's main column strips only its left padding
+// (the edit-button column, class "pr-0" only, is untouched by this
+// selector); its right padding otherwise leaves the title row - and the
+// star inside it - short of where records' edge-to-edge Item reaches.
+.ui.grid.community-item > .column.pl-0 {
+  padding-right: 0;
+}

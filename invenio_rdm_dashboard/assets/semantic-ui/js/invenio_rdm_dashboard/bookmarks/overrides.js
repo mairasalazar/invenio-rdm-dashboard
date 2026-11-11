@@ -27,8 +27,9 @@
  */
 
 import { overrideStore, parametrize } from "react-overridable";
+import "../../../less/invenio_rdm_dashboard/bookmarks.less";
 import { RDMRecordResultsListItemWithState } from "@js/invenio_app_rdm/search/components";
-import { RDMRecordResultsListItem as DashboardUploadsResultsListItem } from "../dashboard/uploads";
+import { RDMRecordResultsListItem as DashboardUploadsResultsListItem } from "../dashboard/uploads_items/RDMRecordResultsListItem";
 import { BookmarkStar } from "./BookmarkStar";
 
 const appName = "InvenioAppRdm.Search";

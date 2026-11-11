@@ -14,6 +14,7 @@
   {# Must load before invenio-rdm-dashboard-uploads.js: it registers the
      "ResultsList.item" override that bundle reads once, at import time. #}
   {{ optional_webpack_tag('invenio-rdm-dashboard-bookmark-overrides.js') }}
+  {{ optional_webpack_tag('invenio-rdm-dashboard-bookmark-overrides.css') }}
 {% endif %}
 {{ webpack['invenio-rdm-dashboard-uploads.js'] }}
 {%- endblock javascript %}

@@ -92,7 +92,7 @@ export const ComputerTabletUploadsItem = ({
             />
           )}
         </Item.Extra>
-        <Item.Header as="h2" className="flex align-items-center">
+        <Item.Header as="h2" className="flex justify-space-between align-items-center">
           <a href={viewLink} className="truncate-lines-2">
             {title}
           </a>

@@ -15,6 +15,7 @@
 
 import React from "react";
 import { overrideStore, parametrize } from "react-overridable";
+import "../../../less/invenio_rdm_dashboard/bookmarks.less";
 import { CommunityItem } from "@js/invenio_communities/community";
 import { BookmarkStar } from "./BookmarkStar";
 
