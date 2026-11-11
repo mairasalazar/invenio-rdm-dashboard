@@ -1,0 +1,17 @@
+{#
+  SPDX-FileCopyrightText: 2026
+  SPDX-License-Identifier: MIT
+#}
+{%- set title = _("Favourites") %}
+{%- extends "invenio_rdm_dashboard/base.html" %}
+
+{% set active_dashboard_menu_item = 'favourites' %}
+
+{%- block javascript %}
+{{ super() }}
+{{ webpack['invenio-rdm-dashboard-favourites.js'] }}
+{%- endblock javascript %}
+
+{%- block user_dashboard_body %}
+  <div id="invenio-rdm-dashboard-favourites"></div>
+{%- endblock user_dashboard_body %}

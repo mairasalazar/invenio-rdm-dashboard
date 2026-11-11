@@ -1,0 +1,29 @@
+{#
+  SPDX-FileCopyrightText: 2020 CERN.
+  SPDX-FileCopyrightText: 2020 Northwestern University.
+  SPDX-License-Identifier: MIT
+#}
+{%- set title = _("Uploads") %}
+{%- extends "invenio_rdm_dashboard/base.html" %}
+
+{% set active_dashboard_menu_item = 'uploads' %}
+
+{%- block javascript %}
+{{ super() }}
+{% if config.get('BOOKMARKS_ENABLED', False) %}
+  {# Must load before invenio-rdm-dashboard-uploads.js: it registers the
+     "ResultsList.item" override that bundle reads once, at import time. #}
+  {{ optional_webpack_tag('invenio-rdm-dashboard-bookmark-overrides.js') }}
+{% endif %}
+{{ webpack['invenio-rdm-dashboard-uploads.js'] }}
+{%- endblock javascript %}
+
+{%- block user_dashboard_body %}
+  <div
+    id="invenio-search-config"
+    data-invenio-search-config='{{ search_app_rdm_user_uploads_config(app_id="InvenioAppRdm.DashboardUploads") | tojson }}'
+    data-deposit-url="{{ invenio_url_for('invenio_app_rdm_records.deposit_create') }}"
+  >
+
+</div>
+{%- endblock user_dashboard_body %}

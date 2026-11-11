@@ -1,0 +1,19 @@
+{#
+  SPDX-FileCopyrightText: 2020 CERN.
+  SPDX-FileCopyrightText: 2020 Northwestern University.
+  SPDX-License-Identifier: MIT
+#}
+{%- extends config.BASE_TEMPLATE %}
+
+{%- block page_body %}
+
+  {%- block user_dashboard_header %}
+  {% include "invenio_rdm_dashboard/header.html" %}
+  {%- endblock user_dashboard_header %}
+
+  <div class="ui container rel-mt-2">
+    {%- block user_dashboard_body %}
+    {%- endblock user_dashboard_body %}
+  </div>
+
+{%- endblock page_body %}

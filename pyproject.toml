@@ -1,0 +1,85 @@
+# SPDX-FileCopyrightText: 2026
+# SPDX-License-Identifier: MIT
+
+[project]
+name = "invenio-rdm-dashboard"
+description = "The logged-in user's personal dashboard (uploads, communities, requests, favourites) for InvenioRDM."
+readme = "README.md"
+requires-python = ">= 3.9"
+license = "MIT"
+authors = [
+  { name = "Zenodo", email = "info@inveniosoftware.org" },
+]
+keywords = [
+  "bookmarks",
+  "dashboard",
+  "favourites",
+  "invenio",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+]
+dependencies = [
+  "invenio-access>=4.0.0",
+  "invenio-accounts>=9.0.0",
+  "invenio-app-rdm>=13.0.0",
+  "invenio-assets>=4.0.0",
+  "invenio-communities>=19.0.0",
+  "invenio-db[postgresql,mysql]>=2.0.0",
+  "invenio-i18n>=4.0.0",
+  "invenio-rdm-records>=19.0.0",
+  "invenio-records-resources>=9.0.0",
+  "invenio-requests>=5.0.0",
+  "invenio-search-ui>=5.0.0",
+  "invenio-users-resources>=6.0.0",
+]
+dynamic = ["version"]
+
+# Entry points merge what used to be invenio-app-rdm's users_ui
+# (the *user* dashboard - not invenio-app-rdm's administration dashboard)
+# with everything from the now-retired invenio-bookmarks module.
+
+[project.entry-points."invenio_assets.webpack"]
+invenio_rdm_dashboard = "invenio_rdm_dashboard.webpack:theme"
+
+[project.entry-points."invenio_base.api_apps"]
+invenio_rdm_dashboard = "invenio_rdm_dashboard:InvenioRDMDashboard"
+
+[project.entry-points."invenio_base.api_blueprints"]
+invenio_rdm_dashboard = "invenio_rdm_dashboard.views:create_api_blueprint"
+
+[project.entry-points."invenio_base.apps"]
+invenio_rdm_dashboard = "invenio_rdm_dashboard:InvenioRDMDashboard"
+
+[project.entry-points."invenio_base.blueprints"]
+invenio_rdm_dashboard = "invenio_rdm_dashboard.views:create_ui_blueprint"
+
+[project.entry-points."invenio_base.finalize_app"]
+invenio_rdm_dashboard = "invenio_rdm_dashboard.ext:finalize_app"
+
+[project.entry-points."invenio_db.alembic"]
+invenio_rdm_dashboard = "invenio_rdm_dashboard:alembic"
+
+[project.entry-points."invenio_db.models"]
+invenio_rdm_dashboard = "invenio_rdm_dashboard.models"
+
+[project.entry-points."invenio_i18n.translations"]
+messages = "invenio_rdm_dashboard"
+
+[project.optional-dependencies]
+tests = [
+  "invenio-app>=3.0.0,<4.0.0",
+  "pytest-invenio>=4.0.0,<5.0.0",
+]
+
+[tool.hatch.version]
+path = "invenio_rdm_dashboard/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/invenio_rdm_dashboard",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

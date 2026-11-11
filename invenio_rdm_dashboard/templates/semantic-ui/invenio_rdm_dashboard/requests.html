@@ -1,0 +1,22 @@
+{#
+  SPDX-FileCopyrightText: 2020 CERN.
+  SPDX-FileCopyrightText: 2020 Northwestern University.
+  SPDX-License-Identifier: MIT
+#}
+{%- set title = _("Requests") %}
+{%- extends "invenio_rdm_dashboard/base.html" %}
+
+{% set active_dashboard_menu_item = 'requests' %}
+
+{%- block javascript %}
+{{ super() }}
+{{ webpack['invenio-rdm-dashboard-requests.js'] }}
+{%- endblock javascript %}
+
+{%- block user_dashboard_body %}
+  <div
+    id="invenio-search-config"
+    data-invenio-search-config='{{ search_app_rdm_user_requests_config(app_id="InvenioAppRdm.DashboardRequests") | tojson }}'
+  >
+  </div>
+{%- endblock user_dashboard_body %}
